@@ -30,10 +30,19 @@ Use existing repo commands first. Prefer `pnpm` for all workspace workflows.
 ## Repository Structure
 
 - `packages/*` - published packages and templates
+- `skills/` - installable skill sources for published packages, intended for downstream repositories
 - `docs/` - documentation site and generated content
 - `scripts/` - shared repo tooling such as `scripts/generateDocs.ts`
 - `.github/workflows/` - CI and release automation
 - `.changeset/` - package versioning and release metadata
+
+## Skills Layout
+
+- `.agents/skills/` is for internal skills used while working in this monorepo.
+- `skills/` at the repository root is for installable skill sources meant to be packaged for use in other repositories.
+- Internal skills may reference monorepo paths, local scripts, and package source trees.
+- Installable skills should describe the published npm package and how consumers use it in downstream repos.
+- When writing installable skills, prefer consumer-facing guidance over repo-local validation steps.
 
 ## Package Rules
 
