@@ -1,17 +1,32 @@
 ---
 name: react-utils
-description: Use `@noaignite/react-utils` in other repositories. Trigger when the user needs shared React hooks, utilities, or component helpers, wants to install or import the package, or is building reusable React logic that should come from the published npm package.
+description: Use `@noaignite/react-utils` in other repositories. Trigger when the user needs shared React hooks, utilities, or component helpers, wants to install or import the package, or is building reusable React logic that should come from the published npm package. For targeted tasks, route to the matching sub-skill such as `react-utils-state`, `react-utils-ref`, `react-utils-observers`, `react-utils-dom`, or `react-utils-interaction`.
 ---
 
 # @noaignite/react-utils
 
 Use this package when you need reusable React helpers that are safe to share across apps.
 
-## Start here
+## Route to the right skill
 
-- Install it with `pnpm add @noaignite/react-utils` (or the package manager the user prefers).
-- Prefer the public exports from `@noaignite/react-utils` instead of reimplementing common hooks or helpers.
-- Respect the peer dependency range: `react` and `react-dom` `^18 || ^19`.
+- Use `react-utils-state` for controlled/uncontrolled state patterns and state sync.
+- Use `react-utils-ref` for ref composition and forwarding.
+- Use `react-utils-observers` for viewport visibility, resize, mutation, and scroll-driven UI.
+- Use `react-utils-dom` for browser-safe DOM helpers, window/viewport sizing, and event helpers.
+- Use `react-utils-interaction` for dismissal, focus return, inert, and press/hold flows.
+
+## Lookup rules
+
+1. Resolve the installed `@noaignite/react-utils` package for the current consumer without assuming package manager layout.
+2. Once resolved, stop broad searching and inspect that package directory directly.
+3. Verify docs by listing `dist/docs/`, then read `dist/docs/<export>.md`, then `dist/<export>.d.ts` if needed.
+4. If a lookup is unexpectedly empty, verify the resolved directory directly before concluding the docs are missing.
+
+Guardrails:
+
+- Do not use repo-wide `glob` or `grep` after the package path is known.
+- Do not mix a full repo-relative glob pattern with a scoped `path`.
+- Use web docs only when local docs and local type files are both unavailable.
 
 ## What it provides
 
